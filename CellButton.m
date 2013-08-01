@@ -9,6 +9,10 @@
 #import "CellButton.h"
 
 @implementation CellButton
+
+@synthesize isMine;
+@synthesize isOpened;
+
 - (id) init
 {
   if( self = [super init]){   
@@ -17,12 +21,10 @@
     isMine       = NO;
     isOpened     = NO;
     
-    [self setBackgroundImage:[[UIImage imageNamed:@"tile1.gif"]
-                              stretchableImageWithLeftCapWidth:18.0 topCapHeight: 0.0]
+    [self setBackgroundImage:[UIImage imageNamed:@"tile1.gif"]
                     forState: UIControlStateNormal];
     
-    [self setBackgroundImage:[[UIImage imageNamed:@"tile2.gif"]
-                              stretchableImageWithLeftCapWidth:18.0 topCapHeight: 0.0]
+    [self setBackgroundImage:[UIImage imageNamed:@"tile2.gif"]
                     forState: UIControlStateHighlighted];
 
   }
@@ -65,24 +67,26 @@
   int value = [self getValue];
   if(isOpened) return value;
   isOpened = YES;
-
-  if(value > 0){
+  [self setBackgroundImage:[UIImage imageNamed:@"tile2.gif"]
+                    forState: UIControlStateNormal];
+    
+  if (value > 0) {
+  
     [self setTitle:[NSString stringWithFormat:@"%i", value] forState:UIControlStateNormal];
     [self setTitle:[NSString stringWithFormat:@"%i", value] forState:UIControlStateHighlighted];
-  }else if(value == -1){
+  
+  } else if (value == -1) {
+    
     [self setTitle:@"X" forState:UIControlStateNormal];
     [self setTitle:@"X" forState:UIControlStateHighlighted];    
-  }
-  [self setBackgroundImage:[[UIImage imageNamed:@"tile2.gif"]
-                            stretchableImageWithLeftCapWidth:18.0 topCapHeight: 0.0]
-                  forState: UIControlStateNormal];  
-
-  if(value == 0){
-    for(CellButton * cell in round_cells_){
+  
+  } else if (value == 0) {
+      
+    for(CellButton * cell in round_cells_) {
+        
       [cell open];
     }    
   }
-  
   
   return value;
 }
@@ -90,7 +94,5 @@
 - (void) markFlag
 { 
 }
-
-@synthesize isMine;
 
 @end
