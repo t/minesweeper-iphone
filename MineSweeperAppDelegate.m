@@ -13,9 +13,9 @@
 
 -(void) applicationDidFinishLaunching:(UIApplication *) application {
   UIWindow *window = [[UIWindow alloc] initWithFrame: [[UIScreen mainScreen] bounds]]; 
-  UINavigationController * nav = 
-  [[UINavigationController alloc] initWithRootViewController:[[HomeController alloc] init]];
-  [window addSubview: nav.view];
+  UINavigationController * nav = [[UINavigationController alloc] initWithRootViewController:[[HomeController alloc] init]];
+  nav.navigationBar.barStyle = UIBarStyleBlack;
+  window.rootViewController = nav;
   [window makeKeyAndVisible];
 }
 

@@ -15,10 +15,12 @@
   BOOL isOpened;
 }
 
+@property (readwrite) BOOL isMine;
+@property (readonly) BOOL isOpened;
+
 - (void) addAdjCell: (CellButton *) cell;
 - (void) addRoundCell: (CellButton *) cell;
 - (int)  open;
 - (void) markFlag;
-@property (readwrite) BOOL isMine;
 
 @end
